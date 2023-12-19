@@ -2,16 +2,20 @@
 #create by wkk & ryc
 ##########
 from screenclass import ScreenClass
+from resclass import ResClass
+from tileclass import TileClass
 
-SCREENW,SCREENH = 576,324
-BKIMGPATH = "./resource/background/bg4/"
-BKIMGNUM  = 4
+SCREENW,SCREENH = 567,303
 CAPTION   = "pytetris"
 INCONIMGPATH = "./resource/icon/favicon.ico"
 TILESPATH = "./resource/tile/"
 
+
+
 def main():
-    screen = ScreenClass(SCREENW,SCREENH,CAPTION,INCONIMGPATH,TILESPATH,BKIMGPATH,BKIMGNUM)
+    resclass = ResClass()
+    tileclasser = TileClass(SCREENH//33,SCREENW//33)
+    screen = ScreenClass(SCREENW,SCREENH,CAPTION,INCONIMGPATH,TILESPATH,resclass,tileclasser)
     screen.test()
     screen.run()
 
