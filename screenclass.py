@@ -41,7 +41,7 @@ class ScreenClass:
         for index in range(len(self.tiles)):
             w,h = self.tiles[index].get_size()
             # 32 x 32
-            self.tiles[index] = pygame.transform.smoothscale(self.tiles[index],(w//2,h//2))
+            self.tiles[index] = pygame.transform.smoothscale(self.tiles[index],(w//7*3,h//7*3))
     
     def showbg(self):
         pic_path,pic_num = self.resclasser.get_bg_pic(self.bgindex)
@@ -50,9 +50,11 @@ class ScreenClass:
     
     def srceenUpdate(self):
         self.showbg()
-        self.test()
+        
         self.showtilemap()
-
+        # showimage = pygame.image.load("./resource/image/showinfo.png").convert_alpha()
+        # showimage = pygame.transform.smoothscale(showimage,(self.screenw,self.screenh))
+        # self.screen.blit(showimage,(0,0))
         pygame.display.update()
         
     def showtilemap(self):
@@ -60,11 +62,6 @@ class ScreenClass:
             for x in range( self.tileclasser.get_map_width()):
                 if self.tileclasser.get_map_yx(y,x) != 0:
                     self.screen.blit(self.tiles[self.tileclasser.get_map_yx(y,x)],(33 *x + 3,3+y*33)) 
-    
-    def test(self):
-        # blit : 33 X 33  leave 1 gap
-        self.tileclasser.set_map_yx(1,1,1)
-        self.tileclasser.set_map_yx(1,10,5)
 
     def screenchangebg(self):
         self.bgindex =  1 if self.bgindex == 4 else  self.bgindex + 1
@@ -78,5 +75,7 @@ class ScreenClass:
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_RETURN:
                         self.screenchangebg()
+                    elif event.key == pygame.K_s:
+                        self.tileclasser.new_tiles()
 
             self.srceenUpdate() 

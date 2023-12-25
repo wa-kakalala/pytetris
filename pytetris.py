@@ -16,7 +16,7 @@ def main():
     resclass = ResClass()
     tileclasser = TileClass(SCREENH//33,SCREENW//33)
     screen = ScreenClass(SCREENW,SCREENH,CAPTION,INCONIMGPATH,TILESPATH,resclass,tileclasser)
-    screen.test()
+    # screen.test()
     screen.run()
 
 if __name__ == "__main__":
